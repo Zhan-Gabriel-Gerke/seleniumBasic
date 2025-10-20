@@ -25,7 +25,7 @@ class GoogleTest {
         driver.findElement(By.cssSelector("button[type='submit']")).click();
 
         WebDriver msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
-        assertTrue(msg.getText().containt("Received"));
+        assertTrue(msg.getText().containt("Received!"));
     }
 
     @Test
