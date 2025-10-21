@@ -2,19 +2,20 @@ package com.example;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
+
+import java.time.Duration;
 
 class GoogleTest {
     WebDriver driver = new ChromeDriver();
-    WebDriver wait = new WebDriverWait(driver, duration.ofSeconds(5));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
     @Test
     void seleniumTest() {
@@ -24,8 +25,9 @@ class GoogleTest {
         driver.findElement(By.name("my-password")).sendKeys("1234");
         driver.findElement(By.cssSelector("button[type='submit']")).click();
 
-        WebDriver msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
-        assertTrue(msg.getText().containt("Received!"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
+        assertTrue(msg.getText().contains("Received!"));
     }
 
     @Test
